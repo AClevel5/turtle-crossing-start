@@ -5,14 +5,22 @@ from turtle import Turtle
 import random
 
 
-class CarManager(Turtle):
-    def __init__(self, score):
-        super().__init__()
-        self.color(random.choice(COLORS))
-        self.shape("square")
-        self.penup()
-        self.size = (1, 2)
-        rand_y = random.randint(-260, 280)
-        self.setheading(180)
-        self.goto(300, rand_y)
+class CarManager():
+    def __init__(self):
+        self.all_cars = []
+
+    def create_car(self):
+        new_car = Turtle("square")
+        new_car.color(random.choice(COLORS))
+        new_car.penup()
+        new_car.shapesize(stretch_wid=1, stretch_len=2)
+        rand_y = random.randint(-250, 250)
+        new_car.goto(300, rand_y)
+        self.all_cars.append(new_car)
+
+    def move_cars(self):
+        for car in self.all_cars:
+            car.backward(STARTING_MOVE_DISTANCE)
+
+
 
